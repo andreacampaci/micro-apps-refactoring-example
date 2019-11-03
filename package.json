@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "mock-server": "node mock/index.js --port 3010"
+    "mock-server": "node mock/index.js --port 3010",
+    "serve-list-component": "cd components/item-component && npm run build && http-server ./dist -p 3001"
   },
   "keywords": [],
   "author": "",

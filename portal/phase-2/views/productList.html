@@ -5,7 +5,10 @@
                 <a ng-repeat="item in data.products | orderBy:'category' | unique:'category'" ng-click="selectCategory(item)" class=" btn btn-block btn-default btn-lg" ng-class="getCategoryClass(item)">{{item}}</a>
             </div>
             <div class="col-xs-9">
-                <div class="well" ng-repeat="item in data.products | filter:categoryFilterFn | range:selectedPage:pageSize">
+                <div>
+                    <item-component category="{{category}}" ng-on-addcart="addProductToCart($event)"></item-component>
+                </div>
+                <!--<div class="well" ng-repeat="item in data.products | filter:categoryFilterFn | range:selectedPage:pageSize">
                     <h3>
                         <strong>{{item.name}}</strong>
                         <span class="pull-right label label-primary">
@@ -17,7 +20,7 @@
                 </div>
                 <div class="pull-right btn-group">
                     <a ng-repeat="page in data.products | filter:categoryFilterFn | pageCount:pageSize" ng-click="selectPage($index + 1)" class="btn btn-default" ng-class="getPageClass($index + 1)">{{$index + 1}}</a>
-                </div>
+                </div>--->
             </div>
         </div>
 	</div>

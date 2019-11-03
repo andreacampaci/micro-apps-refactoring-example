@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve ",
-    "build-wc": "vue-cli-service build --target wc --name vue-element 'src/App.vue' --inline-vue"
+    "build": "vue-cli-service build --target wc --name item-component 'src/App.vue' --inline-vue"
   },
   "dependencies": {
     "axios": "^0.19.0",
