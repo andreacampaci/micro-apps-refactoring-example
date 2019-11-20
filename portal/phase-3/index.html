@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html ng-app="sportsStore">
+<head>
+    <meta charset="utf-8">
+    <title>Portal AngularJS</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-resource.min.js"></script>
+    <script src="//code.angularjs.org/1.7.8/angular-route.min.js"></script>
+    <script>
+        angular.module("sportsStore", ["customFilters","carrello","ngRoute","ngResource"])
+                .config(function($locationProvider){
+                    $locationProvider.hashPrefix('');
+                })
+                .config(function ($routeProvider) {
+                    $routeProvider.when("/checkout", {
+                        templateUrl: "views/checkoutSummary.html"
+                    });
+                    $routeProvider.when("/products", {
+                        templateUrl: "views/productList.html"
+                    });
+                    $routeProvider.when("/complete/:idOrdine", {
+                        templateUrl: "views/thankYou.html",
+                        controller:'fineController'
+                    });
+                    $routeProvider.when("/placeorder", {
+                        templateUrl: "views/placeOrder.html"
+                    });
+                    $routeProvider.otherwise({
+                        templateUrl: "views/productList.html"
+                    });
+                });
+    </script>
+    <script src="js/sportStore.js"></script>
+    <script src="js/customFilters.js"></script>
+    <script src="js/productListCtrl.js"></script>
+    <script src="js/checkoutControllers.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/fineController.js"></script>
+</head>
+<body ng-controller="sportsStoreCtrl">
+<div class="angularJSWrapper">
+    <div class="container">
+        <div class="navbar navbar-inverse">
+            <a class="navbar-brand" href="#">SPORTS STORE</a>
+            <cart-summary />
+        </div>
+        <div class="alert alert-danger" ng-show="data.error">
+            Error ({{data.error.status}}). The product data was not loaded.
+            <a href="index.html" class="alert-link">Click here to try again</a>
+        </div>
+        <ng-view />
+    </div>
+</div>
+</body>
+</html>

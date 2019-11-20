@@ -1,0 +1,12 @@
+	<div class="container row" ng-controller="productListCtrl" ng-hide="data.error">
+        <div class="row" ng-controller="productListCtrl">
+            <div class="col-xs-3">
+                <category-list ng-on-selected="selectCategory($event)"></category-list>
+            </div>
+            <div class="col-xs-9">
+                <div>
+                    <item-component category="{{category}}" ng-on-addcart="addProductToCart($event)"></item-component>
+                </div>
+            </div>
+        </div>
+	</div>
