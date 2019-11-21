@@ -4,8 +4,7 @@
 </style>
 <div class="navbar-right">
 	<div class="navbar-text">
-		<b>Your cart:</b>{{itemCount()}} item(s), {{total() | currency}}
+		<checkout-header cart="{{cartData}}" ng-on-checkout="goToCheckoutPage($event)"></checkout-header>
 	</div>
-	<a href="#/checkout" class="btn btn-default navbar-btn">Checkout</a>
     <a href="#/products" class="btn btn-primary">Back</a>
 </div>

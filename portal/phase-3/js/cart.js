@@ -34,21 +34,28 @@ angular.module("carrello", [])
         return {
             restrict: "E",
             templateUrl: "views/cartSummary.html",
-            controller: function ($scope) {
-                var cartData = cart.getProducts();
-                $scope.total = function () {
-                    var total = 0;
-                    for (var i = 0; i < cartData.length; i++) {
-                        total += (cartData[i].price * cartData[i].count);
-                    }
-                    return total;
-                }
-                $scope.itemCount = function () {
-                    var total = 0;
-                    for (var i = 0; i < cartData.length; i++) {
-                        total += cartData[i].count;
-                    }
-                    return total;
+            controller: function ($scope, components) {
+
+                $scope.init = function () {
+                    var loadWebComponent = function (src) {
+                        const node = document.createElement('script');
+                        node.src = src;
+                        if (components.filter(cmp => cmp === node.src).length === 0) {
+                            components.push(node.src);
+                            node.type = 'text/javascript';
+                            node.async = false;
+                            document.getElementsByTagName('head')[0].appendChild(node);
+                        }
+                    };
+                    loadWebComponent('http://127.0.0.1:3003/checkout-header.js');
+                };
+
+                $scope.init();
+
+                $scope.cartData = cart.getProducts();
+
+                $scope.goToCheckoutPage = function () {
+                    window.location.href = '#/checkout';
                 }
             }
         };
