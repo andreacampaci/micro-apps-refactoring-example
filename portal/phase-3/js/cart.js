@@ -48,6 +48,7 @@ angular.module("carrello", [])
                         }
                     };
                     loadWebComponent('http://127.0.0.1:3003/checkout-header.js');
+                    loadWebComponent('http://127.0.0.1:3004/checkout-list.js');
                 };
 
                 $scope.init();

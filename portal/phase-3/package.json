@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "http-server  --proxy http://localhost:3010"
+    "serve": "http-server ./ --proxy http://localhost:3010"
   },
   "keywords": [],
   "author": "",
