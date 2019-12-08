@@ -2,14 +2,14 @@
   <div class="VueWrapper">
     <ul class="Categories">
       <li >
-        <span class="btn btn-block btn-lg"
+        <span class="btn btn-block btn-md"
           @click="onClick($event, null)"
           :class="{ 'btn-primary': categorySelected === null, 'btn-outline-secondary': categorySelected !== null }">
         Home
         </span>
       </li>
       <li v-for="category in categories">
-      <span class="btn btn-block btn-lg"
+      <span class="btn btn-block btn-md"
           @click="onClick($event, category)"
           :class="{ 'btn-primary': categorySelected === category, 'btn-outline-secondary': categorySelected !== category }">
         {{category}}
@@ -62,11 +62,10 @@
   .VueWrapper {
     border: 2px dashed #42b983;
     padding: 0.5em;
-    font-size: 1.5em;
+    font-size: 12px;
   }
 
   .Categories {
-    font-size: 0.8em;
     padding: 0;
     margin: 0;
     li {
