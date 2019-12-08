@@ -1,4 +1,5 @@
 <template>
+    <checkout-list-component></checkout-list-component>
 </template>
 
 <script lang="ts">
@@ -13,8 +14,13 @@
     Vue.component('b-pagination', BPagination);
     Vue.use(VueAxios, axios);
     import {Component, Vue, Prop, Watch} from 'vue-property-decorator';
+    import CheckoutListComponent from "@/components/CheckoutListComponent.vue";
 
-    @Component
+    @Component({
+        components: {
+            CheckoutListComponent
+        }
+    })
     export default class CheckoutListPage extends Vue {
 
     }

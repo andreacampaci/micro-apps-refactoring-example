@@ -1,6 +1,6 @@
 <template>
     <div v-if="hasReady">
-        <checkout-header :cart="cartData" @checkout="goToCheckoutPage($event)" />
+        <checkout-header :cart="JSON.stringify($store.getters.cartData)" @checkout="goToCheckoutPage($event)" />
     </div>
 </template>
 
@@ -20,11 +20,10 @@
 
     @Component
     export default class CheckoutHeaderComponent extends Vue {
-        @Prop() public cartData!: any;
         public hasReady:boolean = false;
 
         public created() {
-            loadWebComponent('http://127.0.0.1:3003/checkout-header.js').then(() => {
+            loadWebComponent('http://127.0.0.1:3003/checkout-header.js', this.$store).then(() => {
                 this.hasReady = true;
             });
         }

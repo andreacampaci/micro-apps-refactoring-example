@@ -1,6 +1,6 @@
 <template>
     <div v-if="hasReady">
-        <item-component :category="category" @addcart="addProductToCart($event)"/>
+        <item-component :category="$store.getters.categorySelected" @addcart="addProductToCart($event)"/>
     </div>
 </template>
 
@@ -21,16 +21,15 @@
     @Component
     export default class ItemsListComponent extends Vue {
         public hasReady:boolean = false;
-        category = "";
 
         public created() {
-            loadWebComponent('http://127.0.0.1:3001/item-component.js').then(() => {
+            loadWebComponent('http://127.0.0.1:3001/item-component.js', this.$store).then(() => {
                 this.hasReady = true;
             });
         }
 
-        public addProductToCart($event) {
-
+        public addProductToCart($event: any) {
+            this.$store.dispatch('cartData', $event.detail)
         }
     }
 </script>

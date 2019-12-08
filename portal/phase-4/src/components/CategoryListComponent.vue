@@ -23,13 +23,13 @@
         public hasReady:boolean = false;
 
         public created() {
-            loadWebComponent('http://127.0.0.1:3002/category-list.js').then(() => {
+            loadWebComponent('http://127.0.0.1:3002/category-list.js', this.$store).then(() => {
                 this.hasReady = true;
             });
         }
 
-        public selectCategory($event) {
-
+        public selectCategory($event: any) {
+            this.$store.dispatch('categorySelected', $event.detail)
         }
 
     }

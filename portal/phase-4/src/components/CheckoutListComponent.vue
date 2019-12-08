@@ -1,4 +1,7 @@
 <template>
+    <div v-if="hasReady">
+        <checkout-list :cart="JSON.stringify($store.getters.cartData)" />
+    </div>
 </template>
 
 <script lang="ts">
@@ -13,10 +16,17 @@
     Vue.component('b-pagination', BPagination);
     Vue.use(VueAxios, axios);
     import {Component, Vue, Prop, Watch} from 'vue-property-decorator';
+    import {loadWebComponent} from "@/utils/functions";
 
     @Component
     export default class CheckoutListComponent extends Vue {
+        public hasReady:boolean = false;
 
+        public created() {
+            loadWebComponent('http://127.0.0.1:3004/checkout-list.js', this.$store).then(() => {
+                this.hasReady = true;
+            });
+        }
     }
 </script>
 
