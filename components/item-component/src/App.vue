@@ -18,10 +18,10 @@
                     <li class="page-item" v-if="currentPage > 1">
                         <button class="page-link" @click="prevNav()">Previous</button>
                     </li>
-                    <li class="page-item"  v-for="index in rows/perPage" :key="index">
+                    <li class="page-item"  v-for="index in rows" :key="index">
                         <button class="page-link" @click="navTo(index)">{{index}}</button>
                     </li>
-                    <li class="page-item" v-if="currentPage < rows/perPage">
+                    <li class="page-item" v-if="currentPage < rows">
                         <button class="page-link" @click="nextNav()">Next</button>
                     </li>
                 </ul>
@@ -55,6 +55,11 @@
         public perPage = 3;
         private items: any[] = [];
 
+        @Watch('category')
+        private categoryChanged() {
+            this.currentPage = 1;
+        }
+
         public created() {
             this.axios.get('/data/dati')
                 .then((response) => {
@@ -73,12 +78,15 @@
         }
 
         get rows() {
+            let number = 0;
             if (this.category !== "") {
-                return this.items
+                number = this.items
                     .filter(item => item.category === this.category)
                     .length;
+            } else {
+                number = this.items.length;
             }
-            return this.items.length;
+            return Math.ceil(number/this.perPage) > 0 ? Math.ceil(number/this.perPage) : 1;
         }
 
         public addCart($event: any, item: any) {
@@ -93,7 +101,7 @@
             this.currentPage--;
         }
 
-        public navTo(index) {
+        public navTo(index: number) {
             this.currentPage = index;
         }
 

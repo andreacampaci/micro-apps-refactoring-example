@@ -43,7 +43,9 @@
         display: flex;
         flex-direction: row;
         &__sidebar {
-            max-width: 250px;
+            max-width: 300px;
+            min-width: 200px;
+            margin-right: 20px;
         }
         &__content {
             flex-grow: 1;

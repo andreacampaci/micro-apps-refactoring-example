@@ -70,6 +70,7 @@
     margin: 0;
     li {
       margin-bottom: 5px;
+      list-style: none;
     }
   }
 </style>
