@@ -1,7 +1,7 @@
 <template>
   <div class="VueWrapper">
     <span class="paddingStyle">Your cart:{{itemCount}} item(s), ${{total}}</span>
-    <button @click="checkout($event)" class="btn btn-primary">Checkout</button>
+    <button @click="checkout($event)" class="btn btn-md btn-light">Checkout</button>
   </div>
 </template>
 
@@ -67,9 +67,10 @@
   .VueWrapper {
     border: 2px dashed #42b983;
     padding: 0.5em;
-    font-size: 1.2em;
+    font-size: 16px;
   }
   .paddingStyle {
-    padding-right: 0.5em;
+    margin-right: 0.5em;
+    color: #777;
   }
 </style>
