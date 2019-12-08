@@ -1,16 +1,19 @@
 <template>
   <div class="VueWrapper">
     <ul class="Categories">
-      <li class="Categories__item"
+      <li >
+        <span class="btn btn-block btn-lg"
           @click="onClick($event, null)"
-          :class="{ 'Categories__active': categorySelected === null }">
+          :class="{ 'btn-primary': categorySelected === null, 'btn-outline-secondary': categorySelected !== null }">
         Home
+        </span>
       </li>
-      <li v-for="category in categories"
-          class="Categories__item"
+      <li v-for="category in categories">
+      <span class="btn btn-block btn-lg"
           @click="onClick($event, category)"
-          :class="{ 'Categories__active': categorySelected === category }">
+          :class="{ 'btn-primary': categorySelected === category, 'btn-outline-secondary': categorySelected !== category }">
         {{category}}
+      </span>
       </li>
     </ul>
   </div>
@@ -66,32 +69,8 @@
     font-size: 0.8em;
     padding: 0;
     margin: 0;
-    &__item {
-      text-align: center;
-      cursor: pointer;
-      padding: 0.2em;
-      margin-bottom: 0.2em;
-      list-style: none;
-      background: #FFF;
-      border: 1px solid #666;
-      border-radius: 10px;
-      font-weight: bold;
-      color: #666;
-      &:hover {
-        color: #FFF;
-        background: #666;
-        border: 1px solid #666;
-      }
-    }
-    &__active {
-      color: #FFF;
-      background: #007bff;
-      border: 1px solid #007bff;
-      &:hover {
-        color: #FFF;
-        background: #007bff;
-        border: 1px solid #007bff;
-      }
+    li {
+      margin-bottom: 5px;
     }
   }
 </style>
