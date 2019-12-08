@@ -4,23 +4,28 @@
             <b-card class="List__item" v-for="item in itemsPaginated">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <h3><b>{{item.name}}</b></h3>
+                        <h4><b>{{item.name}}</b></h4>
                         <h6>{{item.description}}</h6>
                     </div>
                     <div>
-                        <h3>
-                            <b-badge variant="primary">${{item.price}}</b-badge>
-                        </h3>
-                        <b-button variant="success" @click="addCart($event, item)">Add to Cart</b-button>
+                        <h5 class="d-flex justify-content-end"><span class="badge badge-primary ">${{item.price}}</span></h5>
+                        <button @click="addCart($event, item)" class="btn btn-success btn-sm">Add to Cart</button>
                     </div>
                 </div>
             </b-card>
-            <b-pagination
-                    v-model="currentPage"
-                    :total-rows="rows"
-                    :per-page="perPage"
-                    aria-controls="my-table"
-            ></b-pagination>
+            <nav aria-label="Page navigation example" class="d-flex justify-content-end">
+                <ul class="pagination">
+                    <li class="page-item" v-if="currentPage > 1">
+                        <button class="page-link" @click="prevNav()">Previous</button>
+                    </li>
+                    <li class="page-item"  v-for="index in rows/perPage" :key="index">
+                        <button class="page-link" @click="navTo(index)">{{index}}</button>
+                    </li>
+                    <li class="page-item" v-if="currentPage < rows/perPage">
+                        <button class="page-link" @click="nextNav()">Next</button>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </template>
@@ -83,6 +88,18 @@
                 composed: true,
             }));
         }
+
+        public prevNav() {
+            this.currentPage--;
+        }
+
+        public navTo(index) {
+            this.currentPage = index;
+        }
+
+        public nextNav() {
+            this.currentPage++;
+        }
     }
 </script>
 
@@ -92,7 +109,7 @@
     .VueWrapper {
         border: 2px dashed #42b983;
         padding: 0.5em;
-        font-size: 1.5em;
+        font-size: 12px;
     }
     .List {
         &__item {
