@@ -9,21 +9,20 @@ angular.module("sportsStore")
         $scope.category = null;
 
         $scope.init = function () {
-            $scope.loadWebComponent('http://127.0.0.1:3001/item-component.js');
+            var loadWebComponent = function (src) {
+                const node = document.createElement('script');
+                node.src = src;
+                if (components.filter(cmp => cmp === node.src).length === 0) {
+                    components.push(node.src);
+                    node.type = 'text/javascript';
+                    node.async = false;
+                    document.getElementsByTagName('head')[0].appendChild(node);
+                }
+            };
+            loadWebComponent('http://127.0.0.1:3001/item-component.js');
         };
 
         $scope.init();
-
-        $scope.loadWebComponent = function (src) {
-            const node = document.createElement('script');
-            node.src = src;
-            if (components.filter(cmp => cmp === node.src).length === 0) {
-                components.push(node.src);
-                node.type = 'text/javascript';
-                node.async = false;
-                document.getElementsByTagName('head')[0].appendChild(node);
-            }
-        }
 
         $scope.selectCategory = function (newCategory) {
             selectedCategory = newCategory;
